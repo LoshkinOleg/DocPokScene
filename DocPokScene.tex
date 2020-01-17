@@ -1,0 +1,344 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage[margin=0.5in]{geometry}
+
+\author{Oleg Loshkin}
+\title{PokScene JSON Format}
+\lstset{
+    breaklines=true,
+    tabsize=2
+}
+
+\begin{document}
+
+\maketitle
+\noindent \textbf{Doc git repo: https://github.com/LoshkinOleg/DocPokScene}\\\\
+\textbf{DISCLAMER:} Document probably will be modified to accomodate for parent/child relationships between prefabs/prefabs and prefabs/game objects.
+
+\section{Files location}
+Currently .pokscene files are located under \textbf{"save/Scenes"} instead of AppData. This will need to be addressed at some point since scenes need to be in the Switch as assets.
+
+\section{Arrays}
+\textbf{Arrays are fields that look like "someField": []}. These are preceeded by the \textbf{length of the array} with a name of \textbf{fieldName + "Count" like so: "someFieldCount": 0}.\\\\
+\textbf{WARNING: Array indices begin at 1 instead of 0.} Value of 0 is reserved for the default index that indicates it is not a valid one (ex: game object with "parent": 0 field signifies it has no parent. Game object with "parent: 1" signifies that the game object at the first position in the array is it's parent.).
+
+\section{Empty or default fields}
+\textbf{Empty or default fields} such as "position": {"x":0.0,"y":0.0,"z":0.0} or "parent":0 \textbf{are automatically removed upon .pokscene file generation}. \textbf{If you don't find a particular field somewhere, it means it is set to the default value}.
+
+\newpage
+
+\section{Overall Format}
+\textbf{The jsons in this documentation are formatted for easy reading}. This will not be the case in the .pokscene file. Needless formatting will be removed.
+\begin{lstlisting}
+{
+	"resources": // Hash - filename pairs for ressources to load.
+	{
+		...	
+	},
+	
+	"gameObjectsCount": ...,
+	
+	"gameObjects": // Non prefab game object instances.
+	[
+		...	
+	],
+	
+	"skybox": // Textures used by the skybox in scene.
+	{
+		...	
+	},
+	
+	"prefabsCount": ...,
+	
+	"prefabs": // Instances of prefabs in scene.
+	[
+		...	
+	],
+	
+	"chunksCount": ...,
+	
+	"chunks": // Scene's chunks with indices to game objects and prefabs they contain.
+	[
+		...	
+	],
+	
+	"chunkTimeEventsCount": ...,
+	
+	"chunkTimeEvents": // ChunkTimeEvents with indices to chunks.
+	[
+		...	
+	],
+	
+	"chunkTriggerEventsCount": ...,
+	
+	"chunkTriggerEvents": // ChunkTriggerEvents with indices to chunks.
+	[
+		...	
+	]
+}
+\end{lstlisting}
+
+\newpage
+
+\section{resources}
+\begin{lstlisting}
+"resources":
+	{
+		"0Count": 1,
+		"0": // Enum index corresponding to ResourceType defined in resource_type.h.
+		[
+			{
+				"hash": 68431, // Generated with engine's hasher from the string below.
+				"name": someTexture.png"
+			}		
+		],
+		"1Count": 1,
+		"1": 
+		[
+			{
+				"hash": 68431,
+				"name": someMesh.obj"		
+			}		
+		]
+	}
+\end{lstlisting}
+
+\newpage
+
+\section{gameObjects}
+\textbf{The first game object shows a game object with only "parent" field removed} since it has no parent. \textbf{The second game object shows one with all fields set to default values except "parent"} which is set to the index of the first one. (NOTE: see "Arrays" section of the document as to why indices start at 1 instead of 0.)
+\begin{lstlisting}
+"gameObjectsCount": 2,
+"gameObjects":
+[
+	{ // This is game object at index 1.
+		"isActive": true, // Only present if "isActive" is true, else "isActive" is removed.
+		"transform": // Values are relative to parent.
+		{
+			"position":
+			{
+				"x": 50.0, // Default values of 0.0 .
+				"y": 50.0,
+				"z": 50.0
+			},	
+			"rotation":
+			{
+				"x": 50.0,
+				"y": 50.0,
+				"z": 50.0
+			},
+			"scale":
+			{
+				"x": 50.0,
+				"y": 50.0,
+				"z": 50.0
+			}
+		},
+		"model":
+		{
+			"meshName": 843148, // Hash of the resource located in the "resources" section.	
+			"diffuseMapName": 32156,
+			"normalMapName": 2148435,
+			"occlusionMapName": 410216, // Default value of 0.
+			"roughness": 1.0, // Default value of 0.0 .
+			"diffuseColor":
+			{
+				"r": 1.0, // Default values of 0.0 .
+				"g": 1.0,
+				"b": 1.0,
+				"a": 1.0
+			}
+		},
+		"spline": 
+		{
+			"pointsCount": 2,
+			"points":
+			[
+				{
+					"x": 1.0,				
+					"y": 25.0,
+					"z": 30.0
+				},
+				{
+					"x": 2.0,				
+					"y": 25.0,
+					"z": 30.0
+				}
+			]		
+		},
+		"collider":
+		{
+			"size":
+			{
+				"x": 1.0, // Default value of 0.0 .
+				"y": 25.0,
+				"z": 1.0
+			},
+			"radius": 35.0 // Default value of 0 .
+		}
+	},
+	{
+		"parent": 1	
+	}
+]
+\end{lstlisting}
+
+\section{skybox}
+A skybox is composed of \textbf{6 textures for each face of the skybox}. The order of the textures is left, right, bottom, top, back, front.
+\begin{lstlisting}
+"skybox":
+{
+	"left": 555550,
+	"right": 555551,
+	"bottom": 555552,
+	"top": 555553,
+	"back": 555554,
+	"front": 555555
+}
+\end{lstlisting}
+
+\newpage
+
+\section{prefabs}
+\textbf{Prefabs are identified with "id" fields}. These correspond to the \textbf{"id" value in .pokprefab files} located under \textbf{"save/prefabs"}.\\
+NOTE: Currently, prefabs cannot be children. Need to establish if this is a problem.
+\begin{lstlisting}
+"prefabsCount": 1
+"prefabs":
+[
+	{ // Prefab at index 1.
+		"id": 5, // Might be the id of "Player.pokprefab" for instance. Default value is 0.
+		"isActive": true, // Default value is false.
+		"transform": // Values are relative to parent.
+		{
+			"position":
+			{
+				"x": 50.0, // Default values of 0.0 .
+				"y": 50.0,
+				"z": 50.0
+			},	
+			"rotation":
+			{
+				"x": 50.0,
+				"y": 50.0,
+				"z": 50.0
+			},
+			"scale":
+			{
+				"x": 50.0,
+				"y": 50.0,
+				"z": 50.0
+			}
+		}
+	}
+]
+\end{lstlisting}
+
+\newpage
+
+\section{chunks}
+\textbf{"gameObjects" and "prefabs" fields are always present, even if empty}. This is because chunks may be empty at the start of a scene until something moves within it's bounds during gameplay (like the player).
+\begin{lstlisting}
+"chunksCount": 2
+"chunks":
+[
+	{ // Chunk at index 1.
+		"position":
+		{
+			"x": 10.0, // Default value of 0.0 .
+			"y": 25.0,
+			"z": 30.0
+		},
+		"size":
+		{
+			"x": 2.0, // Default value of 1.0 .
+			"y": 3.0,
+			"z": 50.0
+		},
+		"gameObjects": // ALWAYS PRESENT. Has no default value.
+		{
+			3, // Index of the game object in "gameObjects" field. Default value of 0.
+			25,
+			1
+		},
+		"prefabs": // ALWAYS PRESENT. Has no default value.
+		{
+			1, // Index of the game object in "prefabs" field. Default value of 0.
+			13
+		}
+	}
+]
+\end{lstlisting}
+
+\newpage
+
+\section{chunkTimeEvents}
+\begin{lstlisting}
+"chunkTimeEventsCount": 1
+"chunkTimeEvents":
+[
+	{ // Event at index 1.
+		"time": 34.126, // Default value of -1.0f .
+		"toShowCount": 1, // Default value of 0.
+		"toShow":
+		[
+			2 // Index of the chunk to show in "chunks" field.
+		],
+		"toActivateCount": 1,
+		"toActivate":
+		[
+			2		
+		],
+		"toHideCount": 2,
+		"toHide":
+		[
+			1,
+			3		
+		],
+		"toDestroyCount": 1,
+		"toDestroy":
+		[
+			1
+		],
+	}
+]
+\end{lstlisting}
+
+\section{chunkTriggerEvents}
+\begin{lstlisting}
+"chunkTriggerEventsCount": 1
+"chunkTriggerEvents":
+[
+	{ // Event at index 1.
+		"chunk": 2, // Index of the chunk that triggers this event. Default value of 0.
+		"toShowCount": 1, // Default value of 0.
+		"toShow":
+		[
+			2 // Index of the chunk to show in "chunks" field.
+		],
+		"toActivateCount": 1,
+		"toActivate":
+		[
+			2		
+		],
+		"toHideCount": 2,
+		"toHide":
+		[
+			1,
+			3		
+		],
+		"toDestroyCount": 1,
+		"toDestroy":
+		[
+			1
+		],
+	}
+]
+\end{lstlisting}
+
+\end{document}
