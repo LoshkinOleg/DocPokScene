@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.24)  17 JAN 2020 07:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.24)  17 JAN 2020 08:29
 entering extended mode
 **./DocPokScene.tex
 (DocPokScene.tex
@@ -290,45 +290,40 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 19.
 ("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 20--22
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 27--29
+Underfull \hbox (badness 10000) in paragraph at lines 26--28
 
  []
 
 [1
 
 {C:/Users/admin/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 3
-8.
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 4
+0.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 38.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 40.
  [2] [3] [4] [5]
-[6] [7] [8] (DocPokScene.aux) ) 
+[6] [7] (DocPokScene.aux) ) 
 Here is how much of TeX's memory you used:
  4768 strings out of 492450
  62606 string characters out of 3129748
- 222741 words of memory out of 3000000
+ 221741 words of memory out of 3000000
  9073 multiletter control sequences out of 15000+200000
  11196 words of font info for 44 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 51i,6n,36p,371b,1527s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr1
-0.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on DocPokScene.pdf (8 pages, 101066 bytes).
+ 51i,6n,36p,373b,1527s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Pro
+gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on DocPokScene.pdf (7 pages, 99729 bytes).
 PDF statistics:
- 53 PDF objects out of 1000 (max. 8388607)
+ 50 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

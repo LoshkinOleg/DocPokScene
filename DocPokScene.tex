@@ -17,8 +17,7 @@
 \begin{document}
 
 \maketitle
-\noindent \textbf{Doc git repo: https://github.com/LoshkinOleg/DocPokScene}\\\\
-\textbf{DISCLAMER:} Document probably will be modified to accomodate for parent/child relationships between prefabs/prefabs and prefabs/game objects.
+\noindent \textbf{Doc git repo: https://github.com/LoshkinOleg/DocPokScene}
 
 \section{Files location}
 Currently .pokscene files are located under \textbf{"save/Scenes"} instead of AppData. This will need to be addressed at some point since scenes need to be in the Switch as assets.
@@ -29,6 +28,9 @@ Currently .pokscene files are located under \textbf{"save/Scenes"} instead of Ap
 
 \section{Empty or default fields}
 \textbf{Empty or default fields} such as "position": {"x":0.0,"y":0.0,"z":0.0} or "parent":0 \textbf{are automatically removed upon .pokscene file generation}. \textbf{If you don't find a particular field somewhere, it means it is set to the default value}.
+
+\section{Prefabs}
+\textbf{Nested prefabs are not supported.}
 
 \newpage
 
@@ -43,7 +45,7 @@ Currently .pokscene files are located under \textbf{"save/Scenes"} instead of Ap
 	
 	"gameObjectsCount": ...,
 	
-	"gameObjects": // Non prefab game object instances.
+	"gameObjects": // Game object and prefab instances.
 	[
 		...	
 	],
@@ -52,13 +54,6 @@ Currently .pokscene files are located under \textbf{"save/Scenes"} instead of Ap
 	{
 		...	
 	},
-	
-	"prefabsCount": ...,
-	
-	"prefabs": // Instances of prefabs in scene.
-	[
-		...	
-	],
 	
 	"chunksCount": ...,
 	
@@ -111,12 +106,13 @@ Currently .pokscene files are located under \textbf{"save/Scenes"} instead of Ap
 \newpage
 
 \section{gameObjects}
-\textbf{The first game object shows a game object with only "parent" field removed} since it has no parent. \textbf{The second game object shows one with all fields set to default values except "parent"} which is set to the index of the first one. (NOTE: see "Arrays" section of the document as to why indices start at 1 instead of 0.)
+\textbf{The first game object shows a game object with only "parent" field removed} since it has no parent. \textbf{The second game object shows one with all fields set to default values except "parent"} which is set to the index of the first one. (NOTE: see "Arrays" section of the document as to why indices start at 1 instead of 0.)\\
+\textbf{The third game object shows an instance of a prefab that is a child of game object} at index 1.
 \begin{lstlisting}
-"gameObjectsCount": 2,
+"gameObjectsCount": 3,
 "gameObjects":
 [
-	{ // This is game object at index 1.
+	{ // This is a game object at index 1.
 		"isActive": true, // Only present if "isActive" is true, else "isActive" is removed.
 		"transform": // Values are relative to parent.
 		{
@@ -182,43 +178,18 @@ Currently .pokscene files are located under \textbf{"save/Scenes"} instead of Ap
 			"radius": 35.0 // Default value of 0 .
 		}
 	},
-	{
+	{ // Game object instance at index 2.
 		"parent": 1	
-	}
-]
-\end{lstlisting}
-
-\section{skybox}
-A skybox is composed of \textbf{6 textures for each face of the skybox}. The order of the textures is left, right, bottom, top, back, front.
-\begin{lstlisting}
-"skybox":
-{
-	"left": 555550,
-	"right": 555551,
-	"bottom": 555552,
-	"top": 555553,
-	"back": 555554,
-	"front": 555555
-}
-\end{lstlisting}
-
-\newpage
-
-\section{prefabs}
-\textbf{Prefabs are identified with "id" fields}. These correspond to the \textbf{"id" value in .pokprefab files} located under \textbf{"save/prefabs"}.\\
-NOTE: Currently, prefabs cannot be children. Need to establish if this is a problem.
-\begin{lstlisting}
-"prefabsCount": 1
-"prefabs":
-[
-	{ // Prefab at index 1.
-		"id": 5, // Might be the id of "Player.pokprefab" for instance. Default value is 0.
-		"isActive": true, // Default value is false.
-		"transform": // Values are relative to parent.
+	},
+	{ // Prefab instance at index 3.
+		"prefab": 5, // Id of the prefab that corresponds to the id in .pokprefab.
+		"parent": 1, // This prefab instance is a child of GO at index 1.
+		"isActive": true,
+		"transform":
 		{
 			"position":
 			{
-				"x": 50.0, // Default values of 0.0 .
+				"x": 50.0,
 				"y": 50.0,
 				"z": 50.0
 			},	
@@ -240,6 +211,20 @@ NOTE: Currently, prefabs cannot be children. Need to establish if this is a prob
 \end{lstlisting}
 
 \newpage
+
+\section{skybox}
+A skybox is composed of \textbf{6 textures for each face of the skybox}. The order of the textures is left, right, bottom, top, back, front.
+\begin{lstlisting}
+"skybox":
+{
+	"left": 555550,
+	"right": 555551,
+	"bottom": 555552,
+	"top": 555553,
+	"back": 555554,
+	"front": 555555
+}
+\end{lstlisting}
 
 \section{chunks}
 \textbf{"gameObjects" and "prefabs" fields are always present, even if empty}. This is because chunks may be empty at the start of a scene until something moves within it's bounds during gameplay (like the player).
