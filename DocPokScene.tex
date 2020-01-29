@@ -27,7 +27,8 @@ Currently .pokscene files are located under \textbf{"save/Scenes"} instead of Ap
 \textbf{WARNING: Array indices begin at 1 instead of 0.} Value of 0 is reserved for the default index that indicates it is not a valid one (ex: game object with "parent": 0 field signifies it has no parent. Game object with "parent: 1" signifies that the game object at the first position in the array is it's parent.).
 
 \section{Empty or default fields}
-\textbf{Empty or default fields} such as "position": {"x":0.0,"y":0.0,"z":0.0} or "parent":0 \textbf{are automatically removed upon .pokscene file generation}. \textbf{If you don't find a particular field somewhere, it means it is set to the default value}.
+\textbf{Empty or default fields} such as "myTexturePath": "" or "parent":0 \textbf{are automatically removed upon .pokscene file generation}. \textbf{If you don't find a particular field somewhere, it means it is set to the default value}.\\\\
+\textbf{WARNING: Exceptions to this rule are spatial vectors and colors} like \texttt{"rotation": \{0.0,0.0,0.0\}} or \texttt{"diffuseColor": \{1.0,1.0,1.0,1.0\}}.
 
 \section{Prefabs}
 \textbf{Nested prefabs are not supported.}
@@ -84,16 +85,16 @@ Currently .pokscene files are located under \textbf{"save/Scenes"} instead of Ap
 \begin{lstlisting}
 "resources":
 	{
-		"0Count": 1,
-		"0": // Enum index corresponding to ResourceType defined in resource_type.h.
+		"texturesCount": 1,
+		"textures": // Enum index corresponding to ResourceType defined in resource_type.h.
 		[
 			{
 				"hash": 68431, // Generated with engine's hasher from the string below.
 				"name": someTexture.png"
 			}		
 		],
-		"1Count": 1,
-		"1": 
+		"meshesCount": 1,
+		"meshes": 
 		[
 			{
 				"hash": 68431,
@@ -118,7 +119,7 @@ Currently .pokscene files are located under \textbf{"save/Scenes"} instead of Ap
 		{
 			"position":
 			{
-				"x": 50.0, // Default values of 0.0 .
+				"x": 50.0, // ALWAYS PRESENT,  even if at 0.0.
 				"y": 50.0,
 				"z": 50.0
 			},	
@@ -144,7 +145,7 @@ Currently .pokscene files are located under \textbf{"save/Scenes"} instead of Ap
 			"roughness": 1.0, // Default value of 0.0 .
 			"diffuseColor":
 			{
-				"r": 1.0, // Default values of 0.0 .
+				"r": 1.0, // ALWAYS PRESENT,  even if at 1.0.
 				"g": 1.0,
 				"b": 1.0,
 				"a": 1.0
@@ -171,7 +172,7 @@ Currently .pokscene files are located under \textbf{"save/Scenes"} instead of Ap
 		{
 			"size":
 			{
-				"x": 1.0, // Default value of 0.0 .
+				"x": 1.0, // // ALWAYS PRESENT,  even if at 0.0.
 				"y": 25.0,
 				"z": 1.0
 			},
@@ -213,16 +214,16 @@ Currently .pokscene files are located under \textbf{"save/Scenes"} instead of Ap
 \newpage
 
 \section{skybox}
-A skybox is composed of \textbf{6 textures for each face of the skybox}. The order of the textures is left, right, bottom, top, back, front.
+A skybox is composed of \textbf{6 textures for each face of the skybox}.
 \begin{lstlisting}
 "skybox":
 {
-	"left": 555550,
-	"right": 555551,
-	"bottom": 555552,
-	"top": 555553,
-	"back": 555554,
-	"front": 555555
+	"left": "skyboxTexture0.png",
+	"right": "skyboxTexture1.png",
+	"bottom": "skyboxTexture2.png",
+	"top": "skyboxTexture3.png",
+	"back": "skyboxTexture4.png",
+	"front": "skyboxTexture5.png"
 }
 \end{lstlisting}
 
@@ -268,7 +269,7 @@ A skybox is composed of \textbf{6 textures for each face of the skybox}. The ord
 "chunkTimeEvents":
 [
 	{ // Event at index 1.
-		"time": 34.126, // Default value of -1.0f .
+		"time": 34.126, // Default value of 0.0 .
 		"toShowCount": 1, // Default value of 0.
 		"toShow":
 		[
