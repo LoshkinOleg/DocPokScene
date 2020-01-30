@@ -27,19 +27,30 @@ Currently .pokscene files are located under \textbf{"save/Scenes"} instead of Ap
 \textbf{WARNING: Array indices begin at 1 instead of 0.} Value of 0 is reserved for the default index that indicates it is not a valid one (ex: game object with "parent": 0 field signifies it has no parent. Game object with "parent: 1" signifies that the game object at the first position in the array is it's parent.).
 
 \section{Empty or default fields}
-\textbf{Empty or default fields} such as "myTexturePath": "" or "parent":0 \textbf{are automatically removed upon .pokscene file generation}. \textbf{If you don't find a particular field somewhere, it means it is set to the default value}.\\\\
-\textbf{WARNING: Exceptions to this rule are spatial vectors and colors} like \texttt{"rotation": \{0.0,0.0,0.0\}} or \texttt{"diffuseColor": \{1.0,1.0,1.0,1.0\}}.
+\textbf{Empty or default fields} such as "myTexturePath": "" or "parent":0 \textbf{are automatically removed upon .pokconvertiblescene file generation by UPDC on Unity's side} as long as the string value describing what the default field looks like is written in "Empty Fields" tab in UPDC. \textbf{If you don't find a particular field somewhere, it means it is set to the default value}.\\\\
+\textbf{WARNING: These are exceptions to this rule:}
+\begin{itemize}
+\item All values and sub-values of a game object's "transform".
+\item A game object's "instanceId" (Unity's unique identifier for a game object instance).
+\item A "model"'s "diffuseColor".
+\item A "model"'s "roughness".
+\item A chunk's "position".
+\item A chunk's "size". 
+\end{itemize}
+
+\noindent The values listed above are always present as long as their parent values are present (every model will have a color for instance but not all game objects will have a model).
 
 \section{Prefabs}
-\textbf{Nested prefabs are not supported.}
+\textbf{Nested prefabs are not supported.}\\
+TODO: Prefabs are not yet handeled by ConvertibleSceneToPokSceneTool on Poke's side!
 
 \newpage
 
 \section{Overall Format}
-\textbf{The jsons in this documentation are formatted for easy reading}. This will not be the case in the .pokscene file. Needless formatting will be removed.
+The jsons in this documentation are formatted for easy reading.
 \begin{lstlisting}
 {
-	"resources": // Hash - filename pairs for ressources to load.
+	"resources": // Hash - filename pairs for ressources to load. Can be empty.
 	{
 		...	
 	},
@@ -115,11 +126,11 @@ Currently .pokscene files are located under \textbf{"save/Scenes"} instead of Ap
 [
 	{ // This is a game object at index 1.
 		"isActive": true, // Only present if "isActive" is true, else "isActive" is removed.
-		"transform": // Values are relative to parent.
+		"transform": // Values are relative to parent. ALWAYS PRESENT
 		{
 			"position":
 			{
-				"x": 50.0, // ALWAYS PRESENT,  even if at 0.0.
+				"x": 50.0,
 				"y": 50.0,
 				"z": 50.0
 			},	
@@ -142,10 +153,10 @@ Currently .pokscene files are located under \textbf{"save/Scenes"} instead of Ap
 			"diffuseMapName": 32156,
 			"normalMapName": 2148435,
 			"occlusionMapName": 410216, // Default value of 0.
-			"roughness": 1.0, // Default value of 0.0 .
-			"diffuseColor":
+			"roughness": 1.0, // ALWAYS PRESENT
+			"diffuseColor": // ALWAYS PRESENT
 			{
-				"r": 1.0, // ALWAYS PRESENT,  even if at 1.0.
+				"r": 1.0,
 				"g": 1.0,
 				"b": 1.0,
 				"a": 1.0

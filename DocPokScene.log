@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.29)  29 JAN 2020 09:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.29)  30 JAN 2020 18:06
 entering extended mode
 **./DocPokScene.tex
 (DocPokScene.tex
@@ -287,54 +287,40 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--28
 
  []
 
-LaTeX Font Info:    Trying to load font information for OMS+cmtt on input line 
-31.
-LaTeX Font Info:    No file OMScmtt.fd. on input line 31.
-
-LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
-(Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 31.
-
 
 Underfull \hbox (badness 10000) in paragraph at lines 30--32
 
  []
 
-[1
-
-{C:/Users/admin/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 4
-1.
-
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 3
+3.
 ("C:\Program Files\MiKTeX 2.9\tex/latex/base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 41.
- [2] [3] [4] [5]
-[6] [7] (DocPokScene.aux)
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 33.
+ [1
 
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
- ) 
+{C:/Users/admin/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4]
+ [5] [6] [7]
+(DocPokScene.aux) ) 
 Here is how much of TeX's memory you used:
- 4767 strings out of 492484
- 62627 string characters out of 3130515
+ 4759 strings out of 492484
+ 62551 string characters out of 3130515
  223293 words of memory out of 3000000
- 9055 multiletter control sequences out of 15000+200000
- 11364 words of font info for 45 fonts, out of 3000000 for 9000
+ 9050 multiletter control sequences out of 15000+200000
+ 11196 words of font info for 44 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 51i,6n,36p,373b,1527s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmtt10.pfb>
-Output written on DocPokScene.pdf (7 pages, 111833 bytes).
+ 51i,6n,36p,428b,1527s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on DocPokScene.pdf (7 pages, 101982 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
+ 50 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
